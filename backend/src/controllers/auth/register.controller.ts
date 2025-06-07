@@ -42,8 +42,9 @@ export async function RegisterUser(req: Request, res: Response) {
     });
 
     res.status(HTTP.CREATED).json({ message: "Account was created successfully." });
+    return;
   } catch (err) {
     res.status(HTTP.INTERNAL_SERVER_ERROR).json({ message: "Database error." });
+    return;
   }
-  return;
 }

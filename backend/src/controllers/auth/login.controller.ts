@@ -13,9 +13,10 @@ export async function LoginUser(req: Request, res: Response) {
   });
 
   if (!validation.valid) {
-    return res.status(validation.error?.code ?? HTTP.BAD_REQUEST).json({
+    res.status(validation.error?.code ?? HTTP.BAD_REQUEST).json({
       message: validation.error?.errorMessage ?? "Failed validation.",
     });
+    return;
   }
 
   try {
@@ -23,20 +24,24 @@ export async function LoginUser(req: Request, res: Response) {
       where: { email: email },
     });
     if (!existingUser) {
-      return res.status(HTTP.NOT_FOUND).json({ message: "User do not exist with that email." });
+      res.status(HTTP.NOT_FOUND).json({ message: "User do not exist with that email." });
+      return;
     }
 
     const isPasswordMatches = await compareHashedPasswords(password, existingUser.password);
 
     if (isPasswordMatches === null) {
-      return res.status(HTTP.INTERNAL_SERVER_ERROR).json({ message: "Can't compare password. Bcrypt problem." });
+      res.status(HTTP.INTERNAL_SERVER_ERROR).json({ message: "Can't compare password. Bcrypt problem." });
+      return;
     } else if (isPasswordMatches === false) {
-      return res.status(HTTP.BAD_REQUEST).json({ message: "Wrong password." });
+      res.status(HTTP.BAD_REQUEST).json({ message: "Wrong password." });
+      return;
     }
 
-    return res.status(HTTP.OK).json({ message: "Succesfully logged in." });
+    res.status(HTTP.OK).json({ message: "Succesfully logged in." });
+    return;
   } catch (err) {
-    return res.status(HTTP.INTERNAL_SERVER_ERROR).json({ message: "Database is not responding." });
+    res.status(HTTP.INTERNAL_SERVER_ERROR).json({ message: "Database is not responding." });
+    return;
   }
-  return;
 }
