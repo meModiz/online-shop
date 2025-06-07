@@ -1,13 +1,13 @@
-import prisma from "../../prisma";
-import { ApiError, RegisterInputT } from "../../typings/types";
-import { HTTP } from "../../utils/statusCodes";
-import { registerSchema } from "./register.schema";
+import prisma from "../../../prisma";
+import { ApiError, RegisterInputT } from "../../../typings/types";
+import { HTTP } from "../../../utils/statusCodes";
+import { authSchema } from "./auth.schema";
 
 export default async function RegistrationValidation({
   email,
   password,
 }: RegisterInputT): Promise<{ valid: boolean; error?: ApiError }> {
-  const zValidation = registerSchema.safeParse({
+  const zValidation = authSchema.safeParse({
     email: email,
     password: password,
   });
