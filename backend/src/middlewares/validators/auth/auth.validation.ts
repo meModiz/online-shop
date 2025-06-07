@@ -1,8 +1,9 @@
+import prisma from "../../../prisma";
 import { ApiError, AuthInputT } from "../../../typings/types";
 import { HTTP } from "../../../utils/statusCodes";
 import { authSchema } from "./auth.schema";
 
-export default async function ValidateInput({
+export default async function AuthInputValidation({
   email,
   password,
 }: AuthInputT): Promise<{ valid: boolean; error?: ApiError }> {
@@ -19,7 +20,6 @@ export default async function ValidateInput({
       error: { code: HTTP.BAD_REQUEST, errorMessage: message },
     };
   }
-  return {
-    valid: true,
-  };
+
+  return { valid: true };
 }
