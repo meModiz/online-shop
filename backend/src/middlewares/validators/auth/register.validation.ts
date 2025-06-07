@@ -1,23 +1,22 @@
 import prisma from "../../../prisma";
-import { ApiError, RegisterInputT } from "../../../typings/types";
+import { ApiError, AuthInputT } from "../../../typings/types";
 import { HTTP } from "../../../utils/statusCodes";
 import { authSchema } from "./auth.schema";
+import ValidateInput from "./input.validation";
 
 export default async function RegistrationValidation({
   email,
   password,
-}: RegisterInputT): Promise<{ valid: boolean; error?: ApiError }> {
-  const zValidation = authSchema.safeParse({
-    email: email,
-    password: password,
-  });
+}: AuthInputT): Promise<{ valid: boolean; error?: ApiError }> {
+  const inputValid = await ValidateInput({ email, password });
 
-  if (!zValidation.success) {
-    const message = zValidation.error.issues.map((issue) => issue.message).join("\n");
-
+  if (!inputValid.valid) {
     return {
-      valid: false,
-      error: { code: HTTP.BAD_REQUEST, errorMessage: message },
+      valid: inputValid.valid,
+      error: {
+        code: inputValid.error?.code ?? HTTP.BAD_REQUEST,
+        errorMessage: inputValid.error?.errorMessage ?? "Failed validation.",
+      },
     };
   }
 

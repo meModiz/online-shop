@@ -1,4 +1,4 @@
-export type RegisterInputT = {
+export type AuthInputT = {
   email: string;
   password: string;
 };

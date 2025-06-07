@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import prisma from "../prisma";
-import { HTTP } from "../utils/statusCodes";
-import { hashPassword } from "../services/auth.services";
-import RegistrationValidation from "../middlewares/validators/auth/register.validation";
+import prisma from "../../prisma";
+import { HTTP } from "../../utils/statusCodes";
+import { hashPassword } from "../../services/auth.services";
+import RegistrationValidation from "../../middlewares/validators/auth/register.validation";
 
 export async function RegisterUser(req: Request, res: Response) {
   const { email, password } = req.body;
@@ -36,8 +36,4 @@ export async function RegisterUser(req: Request, res: Response) {
     res.status(HTTP.INTERNAL_SERVER_ERROR).json({ message: "Database error." });
   }
   return;
-}
-export async function LoginUser(req: Request, res: Response) {
-  console.log(req.body);
-  res.status(500).json({ hi: "goodbye" });
 }
