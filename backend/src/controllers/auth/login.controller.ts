@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import prisma from "../../prisma";
 import { HTTP } from "../../utils/statusCodes";
-import AuthInputValidation from "../../middlewares/validators/auth/auth.validation";
+import AuthInputValidation from "../../validators/auth/auth.validation";
 import { checkJwtToken, compareHashedPasswords, signInJWT } from "../../services/auth.services";
 
 export async function LoginUser(req: Request, res: Response) {

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import prisma from "../../prisma";
 import { HTTP } from "../../utils/statusCodes";
 import { hashPassword } from "../../services/auth.services";
-import AuthInputValidation from "../../middlewares/validators/auth/auth.validation";
+import AuthInputValidation from "../../validators/auth/auth.validation";
 
 export async function RegisterUser(req: Request, res: Response) {
   const { email, password } = req.body;

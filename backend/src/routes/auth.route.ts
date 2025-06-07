@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { limiter } from "../middlewares/api.limiter";
+import { limiter } from "../utils/api.limiter";
 import { RegisterUser } from "../controllers/auth/register.controller";
 import { LoginUser } from "../controllers/auth/login.controller";
 

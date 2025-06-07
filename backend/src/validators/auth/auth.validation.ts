@@ -1,6 +1,6 @@
-import prisma from "../../../prisma";
-import { ApiError, AuthInputT } from "../../../typings/types";
-import { HTTP } from "../../../utils/statusCodes";
+import prisma from "../../prisma";
+import { ApiError, AuthInputT } from "../../typings/types";
+import { HTTP } from "../../utils/statusCodes";
 import { authSchema } from "./auth.schema";
 
 export default async function AuthInputValidation({
