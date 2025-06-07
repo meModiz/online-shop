@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import prisma from "../../prisma";
 import { HTTP } from "../../utils/statusCodes";
 import AuthInputValidation from "../../validators/auth/auth.validation";
-import { checkJwtToken, compareHashedPasswords, signInJWT } from "../../services/auth.services";
+import { authenticateUser } from "../../services/auth.services";
 
 export async function LoginUser(req: Request, res: Response) {
   const { email, password } = req.body;
@@ -24,22 +24,25 @@ export async function LoginUser(req: Request, res: Response) {
       where: { email: email },
     });
     if (!existingUser) {
-      res.status(HTTP.NOT_FOUND).json({ message: "User do not exist with that email." });
+      res.status(HTTP.NOT_FOUND).json({ message: "Wrong credentials. (user do not exist)" });
       return;
     }
 
-    const isPasswordMatches = await compareHashedPasswords(password, existingUser.password);
+    const authentication = await authenticateUser(password, {
+      id: existingUser.id,
+      email: existingUser.email,
+      password: existingUser.password,
+      role: existingUser.role,
+    });
 
-    if (isPasswordMatches === null) {
-      res.status(HTTP.INTERNAL_SERVER_ERROR).json({ message: "Can't compare password. Bcrypt problem." });
-      return;
-    } else if (isPasswordMatches === false) {
-      res.status(HTTP.BAD_REQUEST).json({ message: "Wrong password." });
+    if (authentication.logged) {
+      res.status(HTTP.OK).json({ message: "Succesfully logged in.", token: authentication.token });
       return;
     }
-    const token = await signInJWT(existingUser.id, existingUser.email);
-    res.status(HTTP.OK).json({ message: "Succesfully logged in.", token: token });
-    return;
+
+    res
+      .status(authentication.error?.code ?? HTTP.BAD_REQUEST)
+      .json({ message: authentication.error?.message ?? "Unsuccesful authentication" });
   } catch (err) {
     res.status(HTTP.INTERNAL_SERVER_ERROR).json({ message: "Database is not responding." });
     return;

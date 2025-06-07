@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import prisma from "../../prisma";
 import { HTTP } from "../../utils/statusCodes";
-import { hashPassword } from "../../services/auth.services";
 import AuthInputValidation from "../../validators/auth/auth.validation";
+import { hashPassword } from "../../services/hash.services";
 
 export async function RegisterUser(req: Request, res: Response) {
   const { email, password } = req.body;
