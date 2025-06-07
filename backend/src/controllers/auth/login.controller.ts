@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import prisma from "../../prisma";
 import { HTTP } from "../../utils/statusCodes";
 import AuthInputValidation from "../../middlewares/validators/auth/auth.validation";
-import { compareHashedPasswords } from "../../services/auth.services";
+import { checkJwtToken, compareHashedPasswords, signInJWT } from "../../services/auth.services";
 
 export async function LoginUser(req: Request, res: Response) {
   const { email, password } = req.body;
@@ -37,8 +37,8 @@ export async function LoginUser(req: Request, res: Response) {
       res.status(HTTP.BAD_REQUEST).json({ message: "Wrong password." });
       return;
     }
-
-    res.status(HTTP.OK).json({ message: "Succesfully logged in." });
+    const token = await signInJWT(existingUser.id, existingUser.email);
+    res.status(HTTP.OK).json({ message: "Succesfully logged in.", token: token });
     return;
   } catch (err) {
     res.status(HTTP.INTERNAL_SERVER_ERROR).json({ message: "Database is not responding." });
