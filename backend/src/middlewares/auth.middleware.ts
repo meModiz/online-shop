@@ -2,8 +2,9 @@ import { Request, Response, NextFunction } from "express";
 import { HTTP } from "../utils/statusCodes";
 import { getUserByJWT } from "../services/jwt.services";
 import { getJwtTokenFromHeader } from "../utils/parser";
+import { UserRequest } from "../typings/types";
 
-export async function checkAuth(req: Request, res: Response, next: NextFunction) {
+export async function checkAuth(req: UserRequest, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
   const token = getJwtTokenFromHeader(authHeader as string);
   if (token === null) {
@@ -14,7 +15,7 @@ export async function checkAuth(req: Request, res: Response, next: NextFunction)
   try {
     const user = await getUserByJWT(token);
     if (user) {
-      console.log(user);
+      req.user = user;
       next();
       return;
     }
@@ -24,7 +25,7 @@ export async function checkAuth(req: Request, res: Response, next: NextFunction)
   }
 }
 
-export async function isAdmin(req: Request, res: Response, next: NextFunction) {
+export async function isAdmin(req: UserRequest, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
   const token = getJwtTokenFromHeader(authHeader as string);
   if (token === null) {
@@ -32,8 +33,7 @@ export async function isAdmin(req: Request, res: Response, next: NextFunction) {
     return;
   }
   try {
-    const user = await getUserByJWT(token);
-    if (user && user.data.role === "ADMIN") {
+    if (req.user && req.user.data.role === "ADMIN") {
       next();
       return;
     }

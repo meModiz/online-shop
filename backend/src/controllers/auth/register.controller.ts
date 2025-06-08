@@ -6,14 +6,11 @@ import { hashPassword } from "../../services/hash.services";
 
 export async function registerUser(req: Request, res: Response) {
   const { email, password } = req.body;
-  const validation = await authInputValidation({
-    email: email,
-    password: password,
-  });
+  const validation = await authInputValidation(email, password);
 
   if (!validation.valid) {
     res.status(validation.error?.code ?? HTTP.BAD_REQUEST).json({
-      message: validation.error?.errorMessage ?? "Failed validation.",
+      message: validation.error?.message ?? "Failed validation.",
     });
     return;
   }

@@ -21,7 +21,7 @@ export async function updateUserRole(req: Request, res: Response) {
   const validated = await roleValidation(role);
   if (!validated.valid) {
     res.status(validated.error?.code ?? HTTP.BAD_REQUEST).json({
-      message: validated.error?.errorMessage ?? "Failed validation.",
+      message: validated.error?.message ?? "Failed validation.",
     });
     return;
   }

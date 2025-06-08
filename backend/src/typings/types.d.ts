@@ -1,9 +1,10 @@
-export type AuthInputT = {
-  email: string;
-  password: string;
+export type ApiError_T = {
+  code: number;
+  message: string;
 };
 
-export type ApiError = {
-  code: number;
-  errorMessage: string;
-};
+import { Request } from "express";
+
+export interface UserRequest extends Request {
+  user?: JwtPayload;
+}

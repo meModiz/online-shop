@@ -1,3 +1,4 @@
+import { ApiError_T } from "../typings/types";
 import { HTTP } from "../utils/statusCodes";
 import { compareHashedPasswords } from "./hash.services";
 import { signInJWT } from "./jwt.services";
@@ -5,7 +6,7 @@ import { signInJWT } from "./jwt.services";
 export async function authenticateUser(
   inputPassword: string,
   userRecord: { id: number; email: string; password: string; role: string }
-): Promise<{ logged: boolean; token?: string; error?: { code: number; message: string } }> {
+): Promise<{ logged: boolean; token?: string; error?: ApiError_T }> {
   const isPasswordMatches = await compareHashedPasswords(inputPassword, userRecord.password);
 
   if (isPasswordMatches === null) {

@@ -1,5 +1,9 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
+
+const JWT_SECRET = process.env.JWT_SECRET;
+
 export async function signInJWT(id: number, email: string, role: string): Promise<string> {
+  if (!JWT_SECRET) throw new Error("JWT_SECRET is required");
   const token = await jwt.sign(
     {
       exp: Math.floor(Date.now() / 1000) + 60 * 60,
@@ -9,7 +13,7 @@ export async function signInJWT(id: number, email: string, role: string): Promis
         role: role,
       },
     },
-    `${process.env.JWT_SECRET}`
+    JWT_SECRET
   );
 
   return token;
@@ -17,7 +21,8 @@ export async function signInJWT(id: number, email: string, role: string): Promis
 
 export async function getUserByJWT(token: string) {
   try {
-    const user = (await jwt.verify(token, `${process.env.JWT_SECRET}`)) as JwtPayload;
+    if (!JWT_SECRET) throw new Error("JWT_SECRET is required");
+    const user = (await jwt.verify(token, JWT_SECRET)) as JwtPayload;
     return user;
   } catch (err) {
     return false;

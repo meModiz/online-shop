@@ -1,8 +1,8 @@
-import { ApiError } from "../../typings/types";
+import { ApiError_T } from "../../typings/types";
 import { HTTP } from "../../utils/statusCodes";
 import { roleSchema } from "./role.schema";
 
-export default async function roleValidation(role: string): Promise<{ valid: boolean; error?: ApiError }> {
+export default async function roleValidation(role: string): Promise<{ valid: boolean; error?: ApiError_T }> {
   const zValidation = roleSchema.safeParse(role);
 
   if (!zValidation.success) {
@@ -10,7 +10,7 @@ export default async function roleValidation(role: string): Promise<{ valid: boo
 
     return {
       valid: false,
-      error: { code: HTTP.BAD_REQUEST, errorMessage: message },
+      error: { code: HTTP.BAD_REQUEST, message: message },
     };
   }
 
