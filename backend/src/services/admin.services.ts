@@ -3,12 +3,12 @@ import { Role } from "../typings/enums";
 import { HTTP } from "../utils/statusCodes";
 
 export async function changeUserRole(
-  email: string,
+  id: number,
   role: Role
 ): Promise<{ changed: boolean; error?: { code: number; message: string } }> {
   const updateUser = await prisma.user.update({
     where: {
-      email: email,
+      id: id,
     },
     data: {
       role: role,

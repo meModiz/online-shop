@@ -1,8 +1,8 @@
-import { ApiError, AuthInputT } from "../../typings/types";
+import { ApiError } from "../../typings/types";
 import { HTTP } from "../../utils/statusCodes";
 import { roleSchema } from "./role.schema";
 
-export default async function RoleValidation(role: string): Promise<{ valid: boolean; error?: ApiError }> {
+export default async function roleValidation(role: string): Promise<{ valid: boolean; error?: ApiError }> {
   const zValidation = roleSchema.safeParse(role);
 
   if (!zValidation.success) {

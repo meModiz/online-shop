@@ -1,9 +1,8 @@
 import { Router } from "express";
-import GetUsers from "../controllers/admin/getUsers.controller";
-import SetRole from "../controllers/admin/setRole.controller";
+import { getUsers, updateUserRole } from "../controllers/admin/user.controller";
 
 const router = Router();
-router.get("/getUsers", GetUsers);
-router.post("/setRole", SetRole);
+router.get("/users", getUsers);
+router.patch("/user/:id/role", updateUserRole);
 
 export default router;

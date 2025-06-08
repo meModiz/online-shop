@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import prisma from "../../prisma";
 import { HTTP } from "../../utils/statusCodes";
-import AuthInputValidation from "../../validators/auth/auth.validation";
+import authInputValidation from "../../validators/auth/auth.validation";
 import { authenticateUser } from "../../services/auth.services";
 
-export async function LoginUser(req: Request, res: Response) {
+export async function loginUser(req: Request, res: Response) {
   const { email, password } = req.body;
 
-  const validation = await AuthInputValidation({
+  const validation = await authInputValidation({
     email: email,
     password: password,
   });

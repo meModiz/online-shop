@@ -2,7 +2,7 @@ import { ApiError, AuthInputT } from "../../typings/types";
 import { HTTP } from "../../utils/statusCodes";
 import { authSchema } from "./auth.schema";
 
-export default async function AuthInputValidation({
+export default async function authInputValidation({
   email,
   password,
 }: AuthInputT): Promise<{ valid: boolean; error?: ApiError }> {
