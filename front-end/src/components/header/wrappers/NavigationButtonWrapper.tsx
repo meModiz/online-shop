@@ -2,17 +2,20 @@
 import NavigationTextButton from "@/components/header/buttons/NavigationTextButton";
 import { usePathname } from "next/navigation";
 import NavigationIconButton from "../buttons/NavigationIconButton";
-import { NavigationIcons } from "@/typings/header";
+import { ROUTES } from "@/typings/header";
 
 export function NavigationIconButtons() {
   return (
     <div className="flex flex-row justify-center items-center gap-6 select-none">
-      <NavigationIconButton icon={NavigationIcons.HEART} route={"/likes"} />
       <NavigationIconButton
-        icon={NavigationIcons.SHOPPING_CART}
-        route={"/cart"}
+        icon={ROUTES.favorites.icon}
+        route={ROUTES.favorites.path}
       />
-      <NavigationIconButton icon={NavigationIcons.USER} route={"/account"} />
+      <NavigationIconButton icon={ROUTES.cart.icon} route={ROUTES.cart.path} />
+      <NavigationIconButton
+        icon={ROUTES.account.icon}
+        route={ROUTES.account.path}
+      />
     </div>
   );
 }
@@ -22,24 +25,24 @@ export function NavigationTextButtons() {
   return (
     <div className="flex flex-row justify-center items-center gap-12 select-none">
       <NavigationTextButton
-        active={pathname === "/"}
-        title={"Home"}
-        route={"/"}
+        active={pathname === ROUTES.home.path}
+        title={ROUTES.home.label}
+        route={ROUTES.home.path}
       />
       <NavigationTextButton
-        active={pathname === "/about"}
-        title={"About"}
-        route={"/about"}
+        active={pathname === ROUTES.about.path}
+        title={ROUTES.about.label}
+        route={ROUTES.about.path}
       />
       <NavigationTextButton
-        active={pathname === "/contact"}
-        title={"Contact us"}
-        route={"/contact"}
+        active={pathname === ROUTES.contact.path}
+        title={ROUTES.contact.label}
+        route={ROUTES.contact.path}
       />
       <NavigationTextButton
-        active={pathname === "/blog"}
-        title={"Blog"}
-        route={"/blog"}
+        active={pathname === ROUTES.blog.path}
+        title={ROUTES.blog.label}
+        route={ROUTES.blog.path}
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import { CategoryIcons } from "@/typings/header";
+import { ROUTES } from "@/typings/header";
 import CategoryButton from "../buttons/CategoryButton";
 import Divider from "../miscs/Divider";
 
@@ -6,39 +6,39 @@ export default function CategoryBar() {
   return (
     <div className="flex flex-row items-center justify-between bg-[#2E2E2E] h-12 w-full px-40">
       <CategoryButton
-        icon={CategoryIcons.SMARTPHONE}
-        title={"Phones"}
-        route={"/category/phones"}
+        icon={ROUTES.category.phones.icon}
+        title={ROUTES.category.phones.label}
+        route={ROUTES.category.phones.path}
       />
       <Divider />
       <CategoryButton
-        icon={CategoryIcons.MONITOR}
-        title={"Computers"}
-        route={"/category/computers"}
+        icon={ROUTES.category.computers.icon}
+        title={ROUTES.category.computers.label}
+        route={ROUTES.category.computers.path}
       />
       <Divider />
       <CategoryButton
-        icon={CategoryIcons.WATCH}
-        title={"Smart Watches"}
-        route={"/category/watches"}
+        icon={ROUTES.category.watches.icon}
+        title={ROUTES.category.watches.label}
+        route={ROUTES.category.watches.path}
       />
       <Divider />
       <CategoryButton
-        icon={CategoryIcons.CAMERA}
-        title={"Camera"}
-        route={"/category/cameras"}
+        icon={ROUTES.category.cameras.icon}
+        title={ROUTES.category.cameras.label}
+        route={ROUTES.category.cameras.path}
       />
       <Divider />
       <CategoryButton
-        icon={CategoryIcons.HEADPHONES}
-        title={"Headphones"}
-        route={"/category/audio"}
+        icon={ROUTES.category.audio.icon}
+        title={ROUTES.category.audio.label}
+        route={ROUTES.category.audio.path}
       />
       <Divider />
       <CategoryButton
-        icon={CategoryIcons.GAMING}
-        title={"Gaming"}
-        route={"/category/gaming"}
+        icon={ROUTES.category.gaming.icon}
+        title={ROUTES.category.gaming.label}
+        route={ROUTES.category.gaming.path}
       />
     </div>
   );
