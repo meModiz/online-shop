@@ -7,7 +7,7 @@ import {
 } from "../wrappers/NavigationButtonWrapper";
 export default function NavigationBar() {
   return (
-    <div className="flex flex-row items-center justify-between w-full h-20 px-40">
+    <div className="flex flex-row items-center justify-between w-full h-20 px-40 gap-8">
       <Image
         src={Logo}
         sizes="100vw"
