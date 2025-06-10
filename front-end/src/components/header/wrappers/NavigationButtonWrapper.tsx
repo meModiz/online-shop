@@ -5,16 +5,23 @@ import NavigationIconButton from "../buttons/NavigationIconButton";
 import { ROUTES } from "@/typings/header";
 
 export function NavigationIconButtons() {
+  const pathname = usePathname();
   return (
     <div className="flex flex-row justify-center items-center gap-6 select-none">
       <NavigationIconButton
         icon={ROUTES.favorites.icon}
         route={ROUTES.favorites.path}
+        active={pathname === ROUTES.favorites.path}
       />
-      <NavigationIconButton icon={ROUTES.cart.icon} route={ROUTES.cart.path} />
+      <NavigationIconButton
+        icon={ROUTES.cart.icon}
+        route={ROUTES.cart.path}
+        active={pathname === ROUTES.cart.path}
+      />
       <NavigationIconButton
         icon={ROUTES.account.icon}
         route={ROUTES.account.path}
+        active={pathname === ROUTES.account.path}
       />
     </div>
   );

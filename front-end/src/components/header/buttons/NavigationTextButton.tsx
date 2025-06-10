@@ -13,7 +13,7 @@ export default function NavigationTextButton({
     <Link href={route}>
       <div
         className={`font-medium text-base text-black ${
-          active ? "opacity-100" : "opacity-30"
+          active ? "opacity-100" : "opacity-30 hover:opacity-50"
         }`}
       >
         {title}

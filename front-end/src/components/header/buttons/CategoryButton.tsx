@@ -5,10 +5,12 @@ export default function CategoryButton({
   icon,
   title,
   route,
+  active,
 }: {
   icon: CategoryIcon_T;
   title: string;
   route: string;
+  active: boolean;
 }) {
   return (
     <Link href={route}>
