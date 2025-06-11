@@ -3,7 +3,7 @@ import prisma from "../../prisma";
 import { HTTP } from "../../utils/statusCodes";
 export async function getProducts(req: Request, res: Response) {
   const page = parseInt(req.params.page, 10);
-  const pageAmount = 10;
+  const pageAmount = 9;
   try {
     const products = await prisma.product.findMany({
       skip: (page - 1) * pageAmount,
