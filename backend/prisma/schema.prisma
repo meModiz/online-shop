@@ -40,8 +40,10 @@ model Image {
 
 model Product {
   id       Int      @id @default(autoincrement())
-  name String 
-  description String
+  name String @default("")
+  category String @default("null")
   price Int
   productImages Image[]
+  description String @default("")
+  stock Int @default(0)
 }

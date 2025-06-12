@@ -18,9 +18,12 @@ export type Image_T = {
 };
 
 export type Product_T = {
+  id?: number;
   name: string;
-  description: string;
+  category: string;
   price: number;
+  description: string;
+  stock: number;
 };
 
 export interface Product_Images_T extends Product_T {

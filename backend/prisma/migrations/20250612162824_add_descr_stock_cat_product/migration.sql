@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Product" ADD COLUMN     "category" TEXT NOT NULL DEFAULT 'null',
+ADD COLUMN     "stock" INTEGER NOT NULL DEFAULT 0,
+ALTER COLUMN "name" SET DEFAULT '',
+ALTER COLUMN "description" SET DEFAULT '';

@@ -4,9 +4,9 @@ import { productCreateValidation } from "../../validators/admin/product.validati
 import { HTTP } from "../../utils/statusCodes";
 import prisma from "../../prisma";
 export async function createProduct(req: Request, res: Response) {
-  const { name, description, price }: Product_T = req.body;
+  const { name, category, price, description, stock }: Product_T = req.body;
 
-  const validated = await productCreateValidation({ name, description, price });
+  const validated = await productCreateValidation({ name, category, price, description, stock });
   if (!validated.valid) {
     res.status(validated.error?.code ?? HTTP.BAD_REQUEST).json({
       message: validated.error?.message ?? "Failed validation.",
@@ -18,8 +18,10 @@ export async function createProduct(req: Request, res: Response) {
     await prisma.product.create({
       data: {
         name: name,
-        description: description,
+        category: category,
         price: price,
+        description: description,
+        stock: stock,
       },
     });
     res.status(HTTP.CREATED).json({ message: "Product succesfully created." });
