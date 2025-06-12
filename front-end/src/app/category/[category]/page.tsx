@@ -1,29 +1,12 @@
 "use client";
 import ProductCard from "@/components/product/ui/ProductCard";
-import fetchProducts from "@/data/fetchProducts";
-import { ApiResponse_T } from "@/typings/global";
-import { Product_T } from "@/typings/product";
-import { useEffect, useState } from "react";
+import useGetProducts from "@/hooks/products/useGetProducts";
+import { useParams } from "next/navigation";
 
 export default function ProductPage() {
-  const [page, setPage] = useState<number>(1);
-  const [products, setProducts] = useState<Product_T[]>();
-  const [error, setError] = useState<ApiResponse_T>();
-
-  async function getProducts() {
-    const result = await fetchProducts(page);
-    if (Array.isArray(result.response)) {
-      setError(undefined);
-      setProducts(result.response);
-    } else {
-      setProducts(undefined);
-      setError(result.response);
-    }
-  }
-
-  useEffect(() => {
-    getProducts();
-  }, [page]);
+  const params = useParams();
+  const category = params.category as string;
+  const { setPage, products, error } = useGetProducts();
   return (
     <div className="grid grid-cols-3 gap-4 w-full">
       {error ? (
