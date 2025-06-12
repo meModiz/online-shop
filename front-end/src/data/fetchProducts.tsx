@@ -1,7 +1,9 @@
-import { Response_T } from "@/typings/product";
+import { ProductResponse_T } from "@/typings/product";
 import axios from "axios";
 
-export default async function fetchProducts(page: number): Promise<Response_T> {
+export default async function fetchProducts(
+  page: number
+): Promise<ProductResponse_T> {
   try {
     const result = await axios.get(`http://localhost:3001/products/${page}`);
     return { response: result.data.products };

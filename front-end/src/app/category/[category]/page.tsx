@@ -1,13 +1,14 @@
 "use client";
 import ProductCard from "@/components/product/ui/ProductCard";
 import fetchProducts from "@/data/fetchProducts";
-import { Error_T, Product_T } from "@/typings/product";
+import { ApiResponse_T } from "@/typings/global";
+import { Product_T } from "@/typings/product";
 import { useEffect, useState } from "react";
 
 export default function ProductPage() {
   const [page, setPage] = useState<number>(1);
   const [products, setProducts] = useState<Product_T[]>();
-  const [error, setError] = useState<Error_T>();
+  const [error, setError] = useState<ApiResponse_T>();
 
   async function getProducts() {
     const result = await fetchProducts(page);
