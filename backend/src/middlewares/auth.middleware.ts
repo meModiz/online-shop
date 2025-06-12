@@ -1,12 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import { HTTP } from "../utils/statusCodes";
 import { getUserByJWT } from "../services/jwt.services";
-import { getJwtTokenFromHeader } from "../utils/parser";
 import { UserRequest } from "../typings/types";
 
 export async function checkAuth(req: UserRequest, res: Response, next: NextFunction) {
-  const authHeader = req.headers.authorization;
-  const token = getJwtTokenFromHeader(authHeader as string);
+  const token = req.cookies["auth_jwt_token"] as string;
   if (token === null) {
     res.status(HTTP.UNAUTHORIZED).json({ message: "Missing or invalid token." });
     return;
@@ -26,8 +24,7 @@ export async function checkAuth(req: UserRequest, res: Response, next: NextFunct
 }
 
 export async function isAdmin(req: UserRequest, res: Response, next: NextFunction) {
-  const authHeader = req.headers.authorization;
-  const token = getJwtTokenFromHeader(authHeader as string);
+  const token = req.cookies["auth_jwt_token"] as string;
   if (token === null) {
     res.status(HTTP.UNAUTHORIZED).json({ message: "Missing or invalid token." });
     return;
