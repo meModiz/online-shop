@@ -1,36 +1,44 @@
 "use client";
+import Paginator from "@/components/product/Paginator";
 import ProductCard from "@/components/product/ui/ProductCard";
 import useGetProducts from "@/hooks/products/useGetProducts";
-import { useParams } from "next/navigation";
 
 export default function ProductPage() {
-  const params = useParams();
-  const category = params.category as string;
-  const { setPage, products, error } = useGetProducts();
+  const {
+    setCurrentPage,
+    products,
+    error,
+    maxPage,
+    currentPage,
+    isLoadingProducts,
+  } = useGetProducts();
   return (
-    <div className="grid grid-cols-3 gap-4 w-full">
-      {error ? (
-        <div>
-          {error.code} | {error.message}
-        </div>
-      ) : (
-        products?.map((product, index) => (
-          <ProductCard
-            key={product.id}
-            name={product.name}
-            price={product.price}
-            id={product.id}
-          />
-        ))
-      )}
-      <div
-        className="bg-red-600 p-5"
-        onClick={() => {
-          setPage((prev) => prev + 1);
-        }}
-      >
-        Increase page
+    <div className="flex flex-col items-center w-full gap-10">
+      <div className="grid grid-cols-3 gap-4 w-full">
+        {!isLoadingProducts ? (
+          error ? (
+            <div>
+              {error.code} | {error.message}
+            </div>
+          ) : (
+            products?.map((product, index) => (
+              <ProductCard
+                key={product.id}
+                name={product.name}
+                price={product.price}
+                id={product.id}
+              />
+            ))
+          )
+        ) : (
+          <div>Loading</div>
+        )}
       </div>
+      <Paginator
+        currentPage={currentPage}
+        maxPageCount={maxPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 }

@@ -6,6 +6,18 @@ export type Product_T = {
   price: number;
 };
 
-export type ProductResponse_T = {
-  response: Product_T[] | ApiResponse_T;
+export type ProductSucess_T = {
+  products: Product_T[];
+  totalProductPages: number;
+  sucess?: true;
+};
+
+export type ProductError_T = {
+  code: number;
+  message: string;
+  sucess?: false;
+};
+
+export type Response_T = {
+  response: ProductSucess_T | ProductError_T;
 };

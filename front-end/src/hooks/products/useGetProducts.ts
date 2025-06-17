@@ -1,27 +1,41 @@
 import fetchProducts from "@/data/products/fetchProducts";
-import { ApiResponse_T } from "@/typings/global";
-import { Product_T } from "@/typings/product";
+import { Product_T, ProductError_T } from "@/typings/product";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function useGetProducts() {
-  const [page, setPage] = useState<number>(1);
+  const params = useParams();
+  const category = params.category as string;
+  const [maxPage, setMaxPage] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [products, setProducts] = useState<Product_T[]>();
-  const [error, setError] = useState<ApiResponse_T>();
+  const [error, setError] = useState<ProductError_T>();
+  const [isLoadingProducts, setIsLoadingProducts] = useState<boolean>(false);
 
   async function getProducts() {
-    const result = await fetchProducts(page);
-    if (Array.isArray(result.response)) {
+    setIsLoadingProducts(true);
+    const result = await fetchProducts(currentPage, category);
+    if (result.response.sucess) {
       setError(undefined);
-      setProducts(result.response);
-    } else {
+      setProducts(result.response.products);
+      setMaxPage(result.response.totalProductPages);
+    } else if (result.response.sucess === false) {
       setProducts(undefined);
       setError(result.response);
     }
+    setIsLoadingProducts(false);
   }
 
   useEffect(() => {
     getProducts();
-  }, [page]);
+  }, [currentPage]);
 
-  return { setPage, products, error };
+  return {
+    setCurrentPage,
+    products,
+    error,
+    maxPage,
+    currentPage,
+    isLoadingProducts,
+  };
 }
