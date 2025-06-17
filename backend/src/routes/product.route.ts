@@ -9,7 +9,6 @@ const router = Router();
 
 router.post("/create", checkAuth, isAdmin, createProduct);
 router.patch("/edit/:id", checkAuth, isAdmin, editProduct);
-
-router.get("/:page", getProducts);
+router.get("/", getProducts);
 
 export default router;

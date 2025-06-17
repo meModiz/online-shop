@@ -4,10 +4,10 @@ export enum Role {
 }
 
 export enum Category {
-  PHONES = "PHONES",
-  COMPUTERS = "COMPUTERS",
-  SMARTWATCHES = "WATCHES",
-  CAMERAS = "CAMERAS",
-  HEADPHONES = "AUDIO",
-  GAMING = "GAMING",
+  PHONES = "phones",
+  COMPUTERS = "computers",
+  SMARTWATCHES = "watches",
+  CAMERAS = "cameras",
+  HEADPHONES = "audio",
+  GAMING = "gaming",
 }
