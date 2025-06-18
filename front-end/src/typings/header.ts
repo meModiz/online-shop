@@ -11,6 +11,7 @@ export enum NavigationIcons {
   HEART = "heart",
   SHOPPING_CART = "shopping-cart",
   USER = "user",
+  ADMIN = "shield-alert",
 }
 
 export type CategoryIcon_T = CategoryIcons;
@@ -43,8 +44,12 @@ export const ROUTES = {
     icon: NavigationIcons.HEART,
   },
   account: {
-    path: "/account",
+    path: "/account/login",
     icon: NavigationIcons.USER,
+  },
+  admin: {
+    path: "/admin",
+    icon: NavigationIcons.ADMIN,
   },
   category: {
     phones: {

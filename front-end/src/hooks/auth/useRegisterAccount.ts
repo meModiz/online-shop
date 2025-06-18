@@ -1,4 +1,4 @@
-import registerAccount from "@/data/auth/registerAccount";
+import registerAccount from "@/services/auth/registerAccount";
 import { useState } from "react";
 
 export default function useRegisterAccount() {

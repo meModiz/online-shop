@@ -1,4 +1,4 @@
-import fetchProducts from "@/data/products/fetchProducts";
+import fetchProducts from "@/services/products/fetchProducts";
 import { Product_T, ProductError_T } from "@/typings/product";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";

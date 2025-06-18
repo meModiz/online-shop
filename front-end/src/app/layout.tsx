@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import NavigationBar from "@/components/header/components/NavigationBar";
 import { Inter } from "next/font/google";
 import Header from "@/components/header/Header";
 
@@ -20,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased bg-white ${inter.className}`}>
+      <body
+        className={`antialiased bg-white ${inter.className} pointer-events-auto`}
+      >
         <Header />
         {children}
       </body>

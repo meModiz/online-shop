@@ -1,5 +1,5 @@
-import AuthButton from "../ui/AuthButton";
-import AuthInput from "../ui/AuthInput";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
 
 export default function RegisterForm({
   submitAction,
@@ -11,19 +11,19 @@ export default function RegisterForm({
       className="flex flex-col justify-center w-1/3 gap-2"
       action={(formData) => submitAction(formData)}
     >
-      <AuthInput
+      <Input
         name="email"
         placeholder="Email adress"
         type="email"
         required={true}
       />
-      <AuthInput
+      <Input
         name="password"
         placeholder="Password"
-        type="password"
+        type="new-password"
         required={true}
       />
-      <AuthButton title="Register" />
+      <Button title="Register" />
     </form>
   );
 }
