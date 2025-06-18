@@ -51,7 +51,7 @@ export default function Paginator({
             setCurrentPage((prev) => prev - 1);
         }}
       />
-      <div className="flex flex-row justify-center items-center gap-2 select-none">
+      <div className="flex flex-row justify-center items-center gap-2">
         {Array.from({ length: maxPageCount }).map((_, page) => (
           <PageButton
             key={page}

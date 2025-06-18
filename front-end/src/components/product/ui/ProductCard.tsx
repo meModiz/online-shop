@@ -1,6 +1,7 @@
 "use client";
 import phone from "@/../public/phone.png";
 import { Product_T } from "@/typings/product";
+import { Heart } from "lucide-react";
 import { DynamicIcon } from "lucide-react/dynamic";
 import Image from "next/image";
 import { useState } from "react";
@@ -17,8 +18,7 @@ export default function ProductCard({ name, price, id }: Product_T) {
 
   return (
     <div className="flex flex-col justify-center items-center bg-[#F6F6F6] py-6 px-4 gap-4 rounded-lg">
-      <DynamicIcon
-        name={"heart"}
+      <Heart
         color={getIconColor()}
         size={26}
         className="self-end"
@@ -46,7 +46,7 @@ export default function ProductCard({ name, price, id }: Product_T) {
         <br /> #{String(id).padStart(6, "0")}
       </span>
       <span className="text-2xl text-black font-semibold">${price}</span>
-      <div className="bg-black text-white text-sm px-16 py-3 rounded-lg select-none hover:bg-neutral-900">
+      <div className="bg-black text-white text-sm px-16 py-3 rounded-lg hover:bg-neutral-900 select-none">
         Buy now
       </div>
     </div>

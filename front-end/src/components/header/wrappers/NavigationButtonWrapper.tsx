@@ -7,7 +7,7 @@ import { ROUTES } from "@/typings/header";
 export function NavigationIconButtons() {
   const pathname = usePathname();
   return (
-    <div className="flex flex-row justify-center items-center gap-6 select-none">
+    <div className="flex flex-row justify-center items-center gap-6">
       <NavigationIconButton
         icon={ROUTES.favorites.icon}
         route={ROUTES.favorites.path}
@@ -23,6 +23,11 @@ export function NavigationIconButtons() {
         route={ROUTES.account.path}
         active={pathname === ROUTES.account.path}
       />
+      <NavigationIconButton
+        icon={ROUTES.admin.icon}
+        route={ROUTES.admin.path}
+        active={pathname === ROUTES.admin.path}
+      />
     </div>
   );
 }
@@ -30,7 +35,7 @@ export function NavigationIconButtons() {
 export function NavigationTextButtons() {
   const pathname = usePathname();
   return (
-    <div className="flex flex-row justify-center items-center gap-12 select-none">
+    <div className="flex flex-row justify-center items-center gap-12">
       <NavigationTextButton
         active={pathname === ROUTES.home.path}
         title={ROUTES.home.label}
