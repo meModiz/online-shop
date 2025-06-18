@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import { HTTP } from "../utils/statusCodes";
 import { getUserByJWT } from "../services/jwt.services";
 import { UserRequest } from "../typings/types";

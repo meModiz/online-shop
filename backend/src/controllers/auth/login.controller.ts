@@ -40,8 +40,7 @@ export async function loginUser(req: Request, res: Response) {
           sameSite: true, // in development works only, otherwise i need same domain on be and fe
         })
         .status(HTTP.OK)
-        .json({ message: "Succesfully logged in." });
-
+        .json({ message: "Succesfully logged in.", role: existingUser.role, email: existingUser.email });
       return;
     }
 
