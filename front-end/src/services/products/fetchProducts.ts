@@ -6,12 +6,8 @@ export default async function fetchProducts(
   category: string
 ): Promise<Response_T> {
   try {
-    console.log(
-      "API REQUEST TO: " +
-        `${process.env.BACKEND_API_URL}/products?page=${page}&category=${category}`
-    );
     const result = await axios.get(
-      `${process.env.BACKEND_API_URL}/products?page=${page}&category=${category}`
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/products?page=${page}&category=${category}`
     );
     return {
       response: {
@@ -21,7 +17,6 @@ export default async function fetchProducts(
       },
     };
   } catch (err) {
-    console.error(err);
     if (axios.isAxiosError(err)) {
       return {
         response: {

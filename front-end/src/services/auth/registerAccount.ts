@@ -7,7 +7,7 @@ export default async function registerAccount(
 ): Promise<ApiResponse_T> {
   try {
     const result = await axios.post(
-      `${process.env.BACKEND_API_URL}/auth/register`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/register`,
       {
         email: email,
         password: password,

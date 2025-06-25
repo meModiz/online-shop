@@ -7,7 +7,7 @@ export default async function getAccount(): Promise<{
 }> {
   try {
     const result = await axios.get(
-      `${process.env.BACKEND_API_URL}auth/verify`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}auth/verify`,
       {
         withCredentials: true,
       }

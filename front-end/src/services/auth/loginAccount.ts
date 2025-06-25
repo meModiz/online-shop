@@ -7,7 +7,7 @@ export default async function loginAccount(
 ): Promise<{ response: ApiResponse_T; user?: User }> {
   try {
     const result = await axios.post(
-      `${process.env.BACKEND_API_URL}/auth/login`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/login`,
       {
         email: email,
         password: password,
