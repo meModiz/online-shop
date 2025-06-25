@@ -47,7 +47,7 @@ export default function Paginator({
       <ChevronLeft
         color="black"
         onClick={() => {
-          AllowChangePage(currentPage, maxPageCount, false) &&
+          if (AllowChangePage(currentPage, maxPageCount, false))
             setCurrentPage((prev) => prev - 1);
         }}
       />
@@ -58,7 +58,6 @@ export default function Paginator({
             page={page + 1}
             current={page + 1 === currentPage}
             onClick={() => {
-              console.log("test");
               setCurrentPage(page + 1);
             }}
           />
@@ -67,7 +66,7 @@ export default function Paginator({
       <ChevronRight
         color="black"
         onClick={() => {
-          AllowChangePage(currentPage, maxPageCount, true) &&
+          if (AllowChangePage(currentPage, maxPageCount, true))
             setCurrentPage((prev) => prev + 1);
         }}
       />

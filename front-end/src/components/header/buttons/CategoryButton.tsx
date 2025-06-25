@@ -7,7 +7,7 @@ import {
   Gamepad2,
 } from "lucide-react";
 import Link from "next/link";
-import { CategoryIcon_T, CategoryIcons, ROUTES } from "@/typings/header";
+import { CategoryIcon_T, CategoryIcons } from "@/typings/header";
 export default function CategoryButton({
   icon,
   title,

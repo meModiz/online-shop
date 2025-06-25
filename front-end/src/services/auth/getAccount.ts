@@ -24,6 +24,14 @@ export default async function getAccount(): Promise<{
       },
     };
   } catch (err) {
+    if (axios.isAxiosError(err)) {
+      return {
+        response: {
+          code: err.status || 500,
+          message: err.response?.data.message || "Unexpected server error.",
+        },
+      };
+    }
     return { response: { code: 500, message: "Unexpected server error." } };
   }
 }

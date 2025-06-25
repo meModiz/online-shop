@@ -21,7 +21,7 @@ export default function ProductPage() {
               {error.code} | {error.message}
             </div>
           ) : (
-            products?.map((product, index) => (
+            products?.map((product) => (
               <ProductCard
                 key={product.id}
                 name={product.name}

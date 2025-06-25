@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function AdminPage() {
-  const { email, role, errorMessage, verifyAccount } = useAccountVerify();
+  const { role, errorMessage, verifyAccount } = useAccountVerify();
   const router = useRouter();
 
   useEffect(() => {
     verifyAccount();
-  }, []);
+  }, [verifyAccount]);
 
   return (
     <>

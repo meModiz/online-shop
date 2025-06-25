@@ -10,6 +10,6 @@ type AuthState = {
 export const useAuthStore = create<AuthState>()((set) => ({
   user_email: null,
   user_role: null,
-  setUserRole: (role) => set((state) => ({ user_role: role })),
-  setUserEmail: (email) => set((state) => ({ user_email: email })),
+  setUserRole: (role) => set(() => ({ user_role: role })),
+  setUserEmail: (email) => set(() => ({ user_email: email })),
 }));

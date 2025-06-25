@@ -5,10 +5,10 @@ import NavigationBar from "./components/NavigationBar";
 import useAccountVerify from "@/hooks/auth/useAccountVerify";
 
 export default function Header() {
-  const { email, role, errorMessage, verifyAccount } = useAccountVerify();
+  const { verifyAccount } = useAccountVerify();
   useEffect(() => {
     verifyAccount();
-  }, []);
+  }, [verifyAccount]);
   return (
     <div className="flex flex-col justify-center items-center">
       <NavigationBar />

@@ -1,5 +1,3 @@
-import { ApiResponse_T } from "./global";
-
 export type Product_T = {
   id: number;
   name: string;

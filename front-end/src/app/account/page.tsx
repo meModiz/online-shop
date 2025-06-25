@@ -15,7 +15,7 @@ export default function AccountPage() {
     if (!(user_email !== null && user_role !== null)) {
       router.push("/");
     }
-  }, [user_email, user_role]);
+  }, [user_email, user_role, router]);
 
   function LogoutAccount() {
     setUserRole(null);

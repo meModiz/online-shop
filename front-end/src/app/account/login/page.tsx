@@ -15,7 +15,7 @@ export default function AccountLoginPage() {
     if (user_email !== null && user_role !== null) {
       router.push("/account");
     }
-  }, [user_email, user_role]);
+  }, [user_email, user_role, router]);
 
   const { LoginAccount, message } = useLoginAccount();
   return (
@@ -23,7 +23,7 @@ export default function AccountLoginPage() {
       <h1 className="text-black text-xl">Log in account</h1>
       <LoginForm submitAction={LoginAccount} />
       <Link href="register" className="text-sm self-start text-black">
-        Don't have an account yet?{" "}
+        Dont have an account yet?{" "}
         <span className="text-sm text-blue-500 underline">Sign up</span>
       </Link>
       <div className="text-red-400">{message}</div>

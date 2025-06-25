@@ -2,7 +2,6 @@
 import phone from "@/../public/phone.png";
 import { Product_T } from "@/typings/product";
 import { Heart } from "lucide-react";
-import { DynamicIcon } from "lucide-react/dynamic";
 import Image from "next/image";
 import { useState } from "react";
 export default function ProductCard({ name, price, id }: Product_T) {
