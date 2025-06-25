@@ -17,6 +17,7 @@ export default async function fetchProducts(
       },
     };
   } catch (err) {
+    console.error(err);
     if (axios.isAxiosError(err)) {
       return {
         response: {
