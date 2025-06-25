@@ -6,9 +6,12 @@ export default async function getAccount(): Promise<{
   user?: User;
 }> {
   try {
-    const result = await axios.get(`http://localhost:3001/auth/verify`, {
-      withCredentials: true,
-    });
+    const result = await axios.get(
+      `${process.env.BACKEND_API_URL}auth/verify`,
+      {
+        withCredentials: true,
+      }
+    );
     if (result.data.user) {
       return {
         user: {

@@ -7,7 +7,7 @@ export default async function fetchProducts(
 ): Promise<Response_T> {
   try {
     const result = await axios.get(
-      `http://localhost:3001/products?page=${page}&category=${category}`
+      `${process.env.BACKEND_API_URL}/products?page=${page}&category=${category}`
     );
     return {
       response: {

@@ -6,10 +6,13 @@ export default async function registerAccount(
   password: string
 ): Promise<ApiResponse_T> {
   try {
-    const result = await axios.post(`http://localhost:3001/auth/register`, {
-      email: email,
-      password: password,
-    });
+    const result = await axios.post(
+      `${process.env.BACKEND_API_URL}/auth/register`,
+      {
+        email: email,
+        password: password,
+      }
+    );
     return {
       code: result.status,
       message: result.data.message,
