@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc --build",
-    "start": "node ./dist/server.js",
+    "start": "node ./dist/server.js && prisma migrate deploy",
     "dev": "nodemon ./src/server.ts",
-    "postinstall": "prisma generate && prisma migrate deploy"
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
