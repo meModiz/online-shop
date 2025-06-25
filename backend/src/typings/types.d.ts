@@ -4,7 +4,7 @@ export type ApiError_T = {
 };
 
 import { Request } from "express";
-import { Image } from "../generated/prisma";
+import { Image } from "@prisma/client";
 
 export interface UserRequest extends Request {
   user?: JwtPayload;
