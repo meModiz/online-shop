@@ -7,7 +7,7 @@
     "build": "npx tsc --build",
     "start": "node ./dist/server.js",
     "dev": "nodemon ./src/server.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate && prisma migrate deploy"
   },
   "keywords": [],
   "author": "",
