@@ -17,6 +17,10 @@ export default function useAccountVerify() {
       setEmail(result.user.email);
       setRole(result.user.role);
     } else if (result.response) {
+      if (result.response.code === 401) {
+        setEmail(null);
+        setRole("USER");
+      }
       setErrorMessage(result.response.message);
     } else {
       setErrorMessage("Unexpected error");

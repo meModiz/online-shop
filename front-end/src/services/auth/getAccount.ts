@@ -6,8 +6,8 @@ export default async function getAccount(): Promise<{
   user?: User;
 }> {
   try {
-    const result = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}auth/verify`,
+    const result = await axios.post(
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/auth/verify`,
       {
         withCredentials: true,
       }
@@ -31,7 +31,7 @@ export default async function getAccount(): Promise<{
       return {
         response: {
           code: err.status || 500,
-          message: err.response?.data.message || "Unexpected server error.",
+          message: err.response?.data.message || "You are not an admin",
         },
       };
     }
