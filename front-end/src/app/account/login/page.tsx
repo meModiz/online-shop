@@ -8,14 +8,14 @@ import { useEffect } from "react";
 
 export default function AccountLoginPage() {
   const router = useRouter();
-  const user_email = useAuthStore((state) => state.user_email);
-  const user_role = useAuthStore((state) => state.user_role);
+  const userEmail = useAuthStore((state) => state.userEmail);
+  const userRole = useAuthStore((state) => state.userRole);
 
   useEffect(() => {
-    if (user_email !== null && user_role !== null) {
+    if (userEmail !== null && userRole !== null) {
       router.push("/account");
     }
-  }, [user_email, user_role, router]);
+  }, [userEmail, userRole, router]);
 
   const { LoginAccount, message } = useLoginAccount();
   return (
