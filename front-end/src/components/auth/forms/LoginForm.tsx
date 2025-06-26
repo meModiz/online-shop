@@ -20,7 +20,7 @@ export default function LoginForm({
       <Input
         name="password"
         placeholder="Password"
-        type="current-password"
+        type="password"
         required={true}
       />
       <Button title="Log in" />

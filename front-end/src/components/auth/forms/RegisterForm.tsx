@@ -20,7 +20,7 @@ export default function RegisterForm({
       <Input
         name="password"
         placeholder="Password"
-        type="new-password"
+        type="password"
         required={true}
       />
       <Button title="Register" />
