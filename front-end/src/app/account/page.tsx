@@ -8,14 +8,14 @@ export default function AccountPage() {
   const router = useRouter();
   const setUserRole = useAuthStore((state) => state.setUserRole);
   const setUserEmail = useAuthStore((state) => state.setUserEmail);
-  const user_email = useAuthStore((state) => state.user_email);
-  const user_role = useAuthStore((state) => state.user_role);
+  const userEmail = useAuthStore((state) => state.userEmail);
+  const userRole = useAuthStore((state) => state.userRole);
 
   useEffect(() => {
-    if (!(user_email !== null && user_role !== null)) {
+    if (!(userEmail !== null && userRole !== null)) {
       router.push("/");
     }
-  }, [user_email, user_role, router]);
+  }, [userEmail, userRole, router]);
 
   function LogoutAccount() {
     setUserRole(null);
