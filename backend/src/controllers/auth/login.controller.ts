@@ -37,7 +37,7 @@ export async function loginUser(req: Request, res: Response) {
         .cookie("auth_jwt_token", authentication.token, {
           httpOnly: true,
           secure: false, // in development disabled, later will be used, because  cookie will work only through https protected front-end
-          sameSite: true, // in development works only, otherwise i need same domain on be and fe
+          sameSite: false,
         })
         .status(HTTP.OK)
         .json({ message: "Succesfully logged in.", role: existingUser.role, email: existingUser.email });
